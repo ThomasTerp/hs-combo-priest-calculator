@@ -50,6 +50,9 @@ $(document).ready(() =>
 		addCostCards(CardType.Spell, 3, parseInt($("#cost3SpellsNumber").val()))
 		addCostCards(CardType.Spell, 4, parseInt($("#cost4SpellsNumber").val()))
 		addCostCards(CardType.Spell, 5, parseInt($("#cost5SpellsNumber").val()))
+
+		const lastSpell = cards[cards.length - 1];
+
 		addCostCards(CardType.Minion, 0, parseInt($("#cost0MinionsNumber").val()))
 		addCostCards(CardType.Minion, 1, parseInt($("#cost1MinionsNumber").val()))
 		addCostCards(CardType.Minion, 2, parseInt($("#cost2MinionsNumber").val()))
@@ -144,6 +147,14 @@ $(document).ready(() =>
 			if(isOpponentDead())
 			{
 				break;
+			}
+
+			if(card === lastSpell && penFlinger.isInHand)
+			{
+				if(playCard(penFlinger) && !isOpponentDead())
+				{
+					useHeroPower()
+				}
 			}
 		}
 
